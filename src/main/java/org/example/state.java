@@ -2,15 +2,21 @@ package org.example;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
+/*
+ *  UCF COP3330 Summer 2021 Exercise 14 Solution
+ *  Copyright 2021 Drake Scott
+ */
+
 public class state {
 
     //this method will be executed assuming the user enters the correct state when prompted
-    public static double correct(double amount){
+    public static String correct(double amount){
         DecimalFormat df = new DecimalFormat("$#,##0.00");
         double tax = amount * 0.055;
-        System.out.println("The subtotal is " + df.format(amount) + ".\nThe tax is " + df.format(tax) + ".");
         double newAmount = amount + tax;
-        return newAmount;
+        String output = "The subtotal is " + df.format(amount) + ".\nThe tax is " + df.format(tax) + ".\n" +
+                "The total is " + df.format(amount) + ".";
+        return output;
     }
 
     public static void main(String[] args){
@@ -25,10 +31,16 @@ public class state {
         String state = input.next();
         state = state.toLowerCase();
 
+        String output = "";
+
         if (state.equals("wi")) {
-            amount = correct(amount);
+            output = correct(amount);
         }
-        //will print out the correct total whichever state was entered.
-        System.out.println("The total is " + df.format(amount) + ".");
+        else {
+            output = "The total is " + df.format(amount) + ".";
+        }
+
+        //will print out the correct output for whichever state was entered.
+        System.out.println(output);
     }
 }
